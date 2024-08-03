@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: company
+  namespace: jobportal
+  labels:
+    app: prometheus
+spec:
+  endpoints:
+  - interval: 30s
+    port: company
+    path: /actuator/prometheus
+  selector:
+    matchLabels:
+      app: companyservice
+ 

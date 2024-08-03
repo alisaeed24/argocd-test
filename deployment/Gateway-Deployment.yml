@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gatewayservice
+  namespace: jobportal
+  labels:
+    app: gatewayservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gatewayservice
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: gatewayservice
+    spec:
+      containers:
+        - name: gatewayservice
+          image: 172.29.3.41:5000/gatewaysvc:1.0.0.14
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "500Mi"
+          ports:
+            - name: gate
+              containerPort: 8000

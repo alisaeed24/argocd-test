@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: interviewservice
+  namespace: jobportal
+  labels:
+    app: interviewservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: interviewservice
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: interviewservice
+    spec:
+      containers:
+        - name: interviewservice
+          image: 172.29.3.41:5000/interviewsvc:1.0.0.6
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "500Mi"
+          ports:
+            - name: interview
+              containerPort: 8087

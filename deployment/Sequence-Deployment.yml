@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sequenceservice
+  namespace: jobportal
+  labels:
+    app: sequenceservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sequenceservice
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: sequenceservice
+    spec:
+      containers:
+        - name: sequenceservice
+          image: 172.29.3.41:5000/sequencegenerator:1.0.0.1
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: "300m"
+              memory: "500Mi"
+          ports:
+            - name: sequence
+              containerPort: 9000

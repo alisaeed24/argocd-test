@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cvservice
+  namespace: jobportal
+  labels:
+    app: cvservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cvservice
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: cvservice
+    spec:
+      containers:
+        - name: cvservice
+          image: 172.29.3.41:5000/cvservice:1.0.0.1
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: "300m"
+              memory: "500Mi"
+          ports:
+            - name: cv
+              containerPort: 8086

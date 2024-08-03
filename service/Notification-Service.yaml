@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: notificationservice
+  namespace: jobportal
+  labels:
+    app: notificationservice
+spec:
+  selector:
+    app: notificationservice
+  ports:
+    - name: notification
+      port: 8090
+      targetPort: notification
+  type: ClusterIP
+
+

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eurekaserver
+  namespace: jobportal
+  labels:
+    app: eurekaserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eurekaserver
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: eurekaserver
+    spec:
+      containers:
+        - name: eurekaserver
+          image: 172.29.3.41:5000/euerkaserver:1.0.0.21
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8761
+         

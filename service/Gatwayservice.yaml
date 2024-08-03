@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gatewayservice
+  namespace: jobportal
+  labels:
+    app: gatewayservice
+spec:
+  selector:
+    app: gatewayservice
+  ports:
+    - name: gate
+      port: 8000
+      targetPort: gate
+  type: LoadBalancer
+
+
+
+
+
+
+

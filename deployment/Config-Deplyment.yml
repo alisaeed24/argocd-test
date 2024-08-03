@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configserver
+  namespace: jobportal
+  labels:
+    app: configserver 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: configserver
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: configserver
+    spec:
+      hostAliases:
+      - ip: "172.25.1.140"
+        hostnames:
+        - "git.hiast.edu.sy"
+      containers:
+        - name: configserver
+          image: 172.29.3.41:5000/configserver:1.0.0.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8888
+         

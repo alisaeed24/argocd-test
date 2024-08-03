@@ -1,0 +1,30 @@
+# redis-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:6.2
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - name: redis-config-volume
+              mountPath: /usr/local/etc/redis/redis.conf
+              subPath: redis.conf
+          command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+      volumes:
+        - name: redis-config-volume
+          configMap:
+            name: redis-config

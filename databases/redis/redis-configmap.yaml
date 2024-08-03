@@ -1,0 +1,17 @@
+# redis-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-config
+  namespace: redis
+data:
+  redis.conf: |
+    bind 0.0.0.0
+    protected-mode no
+    port 6379
+    tcp-backlog 511
+    timeout 0
+    tcp-keepalive 300
+    # ACL configuration
+    user abdullah on >aaa123 allkeys allcommands allchannels resetchannels
+    # You can add more Redis configuration options here

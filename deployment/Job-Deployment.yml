@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jobservice
+  namespace: jobportal
+  labels:
+    app: jobservice
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jobservice
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: jobservice
+    spec:
+      containers:
+        - name: jobservice
+          image: 172.29.3.41:5000/jobsvc:1.0.0.6
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1000Mi"
+          ports:
+            - name: job
+              containerPort: 9001
+
+

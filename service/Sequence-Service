@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sequenceservice
+  namespace: jobportal
+  labels:
+    app: sequenceservice
+spec:
+  selector:
+    app: sequenceservice
+  ports:
+    - name: sequence
+      port: 9000
+      targetPort: sequence
+  type: ClusterIP
+

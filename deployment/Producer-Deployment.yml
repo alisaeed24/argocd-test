@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: producerservice
+  namespace: jobportal
+  labels:
+    app: producerservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: producerservice
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: producerservice
+    spec:
+      containers:
+        - name: producerserver
+          image: 172.29.3.41:5000/producersvc:1.0.0.13
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: producer
+              containerPort: 8088

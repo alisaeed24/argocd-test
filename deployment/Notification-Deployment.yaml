@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notificationservice
+  namespace: jobportal
+  labels:
+    app: notificationservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notificationservice
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: notificationservice
+    spec:
+      containers:
+        - name: notificationserver
+          image: 172.29.3.41:5000/notificationsvc:1.0.0.6
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1000Mi"
+          ports:
+            - name: notification
+              containerPort: 8090
