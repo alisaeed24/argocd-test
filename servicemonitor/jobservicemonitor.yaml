@@ -1,16 +1,15 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: sequencegenerator
-  namespace: jobportal
+  name: job
+  namespace: test
   labels:
     app: prometheus
 spec:
   endpoints:
-  - interval: 30s
-    port: sequence
-    path: /actuator/prometheus
+    - interval: 30s
+      port: job
+      path: /actuator/prometheus
   selector:
     matchLabels:
-      app: sequenceservice
- 
+      app: testjobservice

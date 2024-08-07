@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: testjobservice
+  namespace: test
+  labels:
+    app: testjobservice
+spec:
+  selector:
+    app: testjobservice
+  ports:
+    - name: job
+      port: 9001
+      targetPort: job
+  type: LoadBalancer
