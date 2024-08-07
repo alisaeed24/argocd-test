@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: testjobservice
-          image: 172.29.3.41:5000/jobsvc:1.0.0.36
+          image: 172.29.3.41:5000/jobsvc-test:1.0.0.41
           imagePullPolicy: IfNotPresent
           resources:
             requests:
