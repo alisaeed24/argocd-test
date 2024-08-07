@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test
-  namespace: jobportal
+  name: testjobservice
+  namespace: test
   labels:
     app: testjobservice
 spec:
