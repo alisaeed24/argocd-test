@@ -17,6 +17,6 @@ spec:
           cpu: "10m"
           memory: "100Mi"
         maxAllowed:
-          cpu: "500m"
-          memory: "700Mi"
+          cpu: "300m"
+          memory: "500Mi"
         controlledResources: ["cpu", "memory"]
